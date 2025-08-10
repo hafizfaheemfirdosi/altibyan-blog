@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Tibyan Quran Academy</title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --black: #000000;
+            --yellow: #FFD700;
+            --dark-yellow: #FFC000;
+            --light-bg: #111111;
+            --text-color: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--black);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .arabic-font {
+            font-family: 'Amiri', serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--black) !important;
+            border-bottom: 2px solid var(--yellow);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            color: var(--yellow) !important;
+            font-weight: bold;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--yellow) !important;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--yellow);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--yellow);
+            color: var(--black);
+            border: none;
+            font-weight: 600;
+            padding: 10px 25px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-yellow);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-outline-light {
+            border: 2px solid;
+            font-weight: 600;
+            padding: 10px 25px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-light:hover {
+            background-color: transparent;
+            color: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1542816417-0983670d4b9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: var(--yellow);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-section {
+                min-height: 80vh;
+                background-attachment: scroll;
+            }
+        }
+
+        /* Features Section */
+        .section-title {
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -10px;
+            left: 25%;
+            background-color: var(--yellow);
+        }
+
+        .feature-box {
+            background-color: var(--light-bg);
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            border-color: var(--yellow);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 20px;
+        }
+
+        /* Courses */
+        .course-card {
+            background-color: var(--light-bg);
+            border: 1px solid #333;
+            border-radius: 10px;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--yellow);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .course-icon {
+            font-size: 2rem;
+            color: var(--yellow);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--light-bg);
+            color: white;
+            padding: 50px 0 20px;
+            border-top: 2px solid var(--yellow);
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--yellow);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.3rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icons a:hover {
+            color: var(--yellow);
+            transform: translateY(-3px);
+            background-color: rgba(255, 215, 0, 0.2);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--yellow);
+            padding-left: 5px;
+        }
+
+        /* Modals */
+        .modal-content {
+            background-color: var(--black);
+            color: white;
+            border: 2px solid var(--yellow);
+            border-radius: 10px;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid var(--yellow);
+        }
+
+        .modal-footer {
+            border-top: 1px solid var(--yellow);
+        }
+
+        /* WhatsApp Button */
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            font-weight: 600;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            color: white;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--yellow);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--dark-yellow);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-quran"></i> Al Tibyan Quran Academy
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#coursesModal">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a></li>
+                </ul>
+                <a href="#" class="btn btn-primary ms-lg-3" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title arabic-font">تعلم القرآن الكريم</h1>
+            <h1 class="hero-title">Learn Quran with Excellence</h1>
+            <p class="lead mb-4">Join our online courses and deepen your understanding of the Holy Quran with certified scholars.</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="#" class="btn btn-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll Now</a>
+                <a href="#" class="btn btn-outline-light btn-lg px-4" data-bs-toggle="modal" data-bs-target="#coursesModal">Our Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center section-title">Why Choose Us?</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-box text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Expert Teachers</h3>
+                        <p>Learn from certified Quran scholars with Ijazah and years of teaching experience in traditional Islamic sciences.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-box text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h3>Online Classes</h3>
+                        <p>Flexible learning from the comfort of your home with interactive one-on-one or group sessions.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-box text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3>Personalized Learning</h3>
+                        <p>Customized curriculum based on your level and learning goals with regular progress tracking.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-box text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-quran"></i>
+                        </div>
+                        <h3>Tajweed Certification</h3>
+                        <p>Master proper Quranic recitation with our comprehensive Tajweed program and receive certification.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-box text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Flexible Schedule</h3>
+                        <p>Choose class timings that work for you, available 24/7 to accommodate students worldwide.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-box text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Free Trial Class</h3>
+                        <p>Experience our teaching methodology with a free trial class before enrollment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action -->
+    <section class="py-5" style="background: linear-gradient(135deg, var(--black) 0%, #222 100%);">
+        <div class="container text-center">
+            <h2 class="mb-4 section-title">Start Your Quran Journey Today!</h2>
+            <p class="lead mb-5">Join thousands of students worldwide who are learning the Quran with our certified teachers.</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="#" class="btn btn-primary btn-lg px-5" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll Now</a>
+                <a href="#" class="btn btn-outline-light btn-lg px-5" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="footer-logo">
+                        <i class="fas fa-quran"></i> Al Tibyan
+                    </h4>
+                    <p>Dedicated to spreading the light of the Quran through authentic Islamic education worldwide.</p>
+                    <div class="social-icons mt-3">
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/923027935834" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:hafizfaheemfirdosi@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-warning mb-3">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#coursesModal">Courses</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About Us</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-warning mb-3">Courses</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Quran Hifz</a></li>
+                        <li><a href="#">Quran Recitation</a></li>
+                        <li><a href="#">Tajweed Rules</a></li>
+                        <li><a href="#">Tafsir</a></li>
+                        <li><a href="#">Arabic Language</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-warning mb-3">Contact Info</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2 text-warning"></i> Lahore, Pakistan</li>
+                        <li><i class="fas fa-phone me-2 text-warning"></i> +92 302 7935834</li>
+                        <li><i class="fas fa-envelope me-2 text-warning"></i> hafizfaheemfirdosi@gmail.com</li>
+                        <li><i class="fas fa-clock me-2 text-warning"></i> 24/7 Online Classes</li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="background-color: #333;">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> Al Tibyan Quran Academy. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Designed with <i class="fas fa-heart text-danger"></i> for the Ummah</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Enroll Now Modal -->
+    <div class="modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="enrollModalLabel">Enrollment Form</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="enrollForm">
+                        <div class="mb-3">
+                            <label for="studentName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="studentName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="studentEmail" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentPhone" class="form-label">WhatsApp Number <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="studentPhone" required pattern="[0-9]{10,15}">
+                            <small class="text-muted">Include country code (e.g., +923001234567)</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentAge" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="studentAge" min="5" max="80">
+                        </div>
+                        <div class="mb-3">
+                            <label for="courseSelect" class="form-label">Select Course <span class="text-danger">*</span></label>
+                            <select class="form-select" id="courseSelect" required>
+                                <option value="">Choose a course</option>
+                                <option value="quran_hifz">Quran Hifz (Memorization)</option>
+                                <option value="quran_nazra">Quran Nazra (Recitation)</option>
+                                <option value="tajweed">Tajweed Rules</option>
+                                <option value="tafsir">Tafsir (Quranic Interpretation)</option>
+                                <option value="arabic">Arabic Language</option>
+                                <option value="hadith">Hadith Studies</option>
+                                <option value="sirat">Seerat-un-Nabi</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentLevel" class="form-label">Current Quranic Knowledge</label>
+                            <select class="form-select" id="studentLevel">
+                                <option value="beginner">Beginner (Just starting)</option>
+                                <option value="basic">Basic (Can read slowly)</option>
+                                <option value="intermediate">Intermediate (Can read fluently)</option>
+                                <option value="advanced">Advanced (Know some Tajweed)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentMessage" class="form-label">Additional Information</label>
+                            <textarea class="form-control" id="studentMessage" rows="3" placeholder="Your goals, preferred schedule, etc."></textarea>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">
+                                I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">terms and conditions</a>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="submitEnrollForm()">Submit Application</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Courses Modal -->
+    <div class="modal fade" id="coursesModal" tabindex="-1" aria-labelledby="coursesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="coursesModalLabel">Our Courses</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="course-card p-4 h-100">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-book-quran course-icon me-3"></i>
+                                    <h4>Quran Hifz</h4>
+                                </div>
+                                <p>Complete Quran memorization program with proper tajweed under the guidance of certified Huffaz. Structured memorization plan with regular revision schedule.</p>
+                                <ul class="mt-3">
+                                    <li>Personalized memorization plan</li>
+                                    <li>Daily revision system</li>
+                                    <li>Periodic testing</li>
+                                    <li>Ijazah upon completion</li>
+                                </ul>
+                                <div class="mt-3">
+                                    <span class="badge bg-warning text-dark">From $50/month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="course-card p-4 h-100">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-quran course-icon me-3"></i>
+                                    <h4>Quran Recitation</h4>
+                                </div>
+                                <p>Learn to recite the Quran fluently with correct pronunciation and basic tajweed rules. Suitable for beginners and those wanting to improve their recitation.</p>
+                                <ul class="mt-3">
+                                    <li>Arabic alphabet mastery</li>
+                                    <li>Proper pronunciation</li>
+                                    <li>Basic tajweed rules</li>
+                                    <li>Fluency development</li>
+                                </ul>
+                                <div class="mt-3">
+                                    <span class="badge bg-warning text-dark">From $40/month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="course-card p-4 h-100">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-microphone-alt course-icon me-3"></i>
+                                    <h4>Tajweed Mastery</h4>
+                                </div>
+                                <p>Master the proper pronunciation and articulation of Quranic Arabic letters according to classical tajweed rules. Advanced course for beautiful recitation.</p>
+                                <ul class="mt-3">
+                                    <li>Detailed tajweed rules</li>
+                                    <li>Makharij correction</li>
+                                    <li>Practical application</li>
+                                    <li>Certification available</li>
+                                </ul>
+                                <div class="mt-3">
+                                    <span class="badge bg-warning text-dark">From $35/month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="course-card p-4 h-100">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-book-reader course-icon me-3"></i>
+                                    <h4>Tafsir Studies</h4>
+                                </div>
+                                <p>In-depth study of Quranic interpretation and understanding of divine messages. Explore the meanings behind the verses with authentic explanations.</p>
+                                <ul class="mt-3">
+                                    <li>Classical tafsir methodologies</li>
+                                    <li>Thematic studies</li>
+                                    <li>Contextual understanding</li>
+                                    <li>Practical applications</li>
+                                </ul>
+                                <div class="mt-3">
+                                    <span class="badge bg-warning text-dark">From $60/month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">About Al Tibyan Quran Academy</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <img src="html1.png.png" alt="Quran Academy" class="img-fluid rounded">
+                    </div>
+                    <p>Al Tibyan Quran Academy is a premier Islamic educational institution dedicated to spreading the knowledge of the Holy Quran and authentic Islamic teachings through traditional and modern methods.</p>
+                    
+                    <h5 class="mt-4 text-warning">Our History</h5>
+                    <p>Founded in 2010 by Hafiz Muhammad Faheem, our academy began as a small local madrasah and has grown into an international online Quran teaching platform serving students from over 30 countries.</p>
+                    
+                    <h5 class="mt-4 text-warning">Our Mission</h5>
+                    <p>To provide quality Quranic education to Muslims worldwide, preserving the authentic recitation and understanding of the Quran as taught by our beloved Prophet Muhammad (PBUH) through qualified scholars.</p>
+                    
+                    <h5 class="mt-4 text-warning">Our Methodology</h5>
+                    <ul>
+                        <li>One-on-one personalized attention</li>
+                        <li>Traditional teaching with modern technology</li>
+                        <li>Emphasis on understanding along with recitation</li>
+                        <li>Balanced approach combining knowledge and spirituality</li>
+                    </ul>
+                    
+                    <h5 class="mt-4 text-warning">Our Teachers</h5>
+                    <p>All our instructors are certified Huffaz and Islamic scholars with Ijazah in Quran recitation and various Islamic sciences from recognized institutions like Al-Azhar University and Darul Uloom Deoband.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <h5 class="text-warning mb-3">Direct Contact</h5>
+                        <div class="d-flex gap-2 mt-3 flex-wrap">
+                            <a href="https://wa.me/923027935834" class="btn btn-whatsapp flex-grow-1">
+                                <i class="fab fa-whatsapp me-2"></i> WhatsApp Chat
+                            </a>
+                            <a href="tel:+923027935834" class="btn btn-outline-light flex-grow-1">
+                                <i class="fas fa-phone me-2"></i> Call Now
+                            </a>
+                            <a href="mailto:hafizfaheemfirdosi@gmail.com" class="btn btn-danger flex-grow-1">
+                                <i class="fas fa-envelope me-2"></i> Email Us
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <h5 class="text-warning mb-3">Send Us a Message</h5>
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label for="contactName" class="form-label">Your Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="contactName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactEmail" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="contactEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactPhone" class="form-label">WhatsApp Number <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="contactPhone" required pattern="[0-9]{10,15}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactSubject" class="form-label">Subject</label>
+                            <select class="form-select" id="contactSubject">
+                                <option value="general">General Inquiry</option>
+                                <option value="admission">Admission Question</option>
+                                <option value="course">Course Information</option>
+                                <option value="feedback">Feedback/Suggestion</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactMessage" class="form-label">Message <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="contactMessage" rows="3" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="sendContactMessage()">
+                        <i class="fas fa-paper-plane me-1"></i> Send Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Terms and Conditions</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="text-warning">1. Enrollment</h6>
+                    <p>By enrolling in our courses, you agree to attend classes regularly and complete assigned homework.</p>
+                    
+                    <h6 class="text-warning mt-3">2. Fees</h6>
+                    <p>Course fees are payable monthly in advance. We offer a 3-day grace period for payments.</p>
+                    
+                    <h6 class="text-warning mt-3">3. Attendance</h6>
+                    <p>Students must inform teachers at least 6 hours before missing a class. Repeated absences may result in termination.</p>
+                    
+                    <h6 class="text-warning mt-3">4. Conduct</h6>
+                    <p>Students must maintain Islamic etiquette during classes. Disrespectful behavior will not be tolerated.</p>
+                    
+                    <h6 class="text-warning mt-3">5. Refunds</h6>
+                    <p>Fees for completed months are non-refundable. Future months can be refunded if requested before the billing date.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Form Submission Functions
+        function submitEnrollForm() {
+            const name = document.getElementById("studentName").value;
+            const email = document.getElementById("studentEmail").value;
+            const phone = document.getElementById("studentPhone").value;
+            const course = document.getElementById("courseSelect").value;
+            const message = document.getElementById("studentMessage").value;
+            
+            if (!name || !email || !phone || !course) {
+                alert("Please fill all required fields!");
+                return;
+            }
+            
+            const emailBody = `New Enrollment Request:%0A%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}%0ACourse: ${course}%0AMessage: ${message}`;
+            
+            window.location.href = `mailto:hafizfaheemfirdosi@gmail.com?subject=New Enrollment&body=${emailBody}`;
+            
+            alert("Thank you! Your enrollment request has been submitted. We'll contact you soon via WhatsApp.");
+            document.getElementById("enrollForm").reset();
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('enrollModal'));
+            modal.hide();
+        }
+
+        function sendContactMessage() {
+            const name = document.getElementById("contactName").value;
+            const phone = document.getElementById("contactPhone").value;
+            const message = document.getElementById("contactMessage").value;
+            const subject = document.getElementById("contactSubject").value;
+            const email = document.getElementById("contactEmail").value;
+            
+            if (!name || !phone || !message) {
+                alert("Please fill all required fields!");
+                return;
+            }
+            
+            let whatsappMsg = `New Message (${subject}) from ${name}:%0A%0A${message}`;
+            
+            if (email) {
+                whatsappMsg += `%0A%0AEmail: ${email}`;
+            }
+            
+            whatsappMsg += `%0A%0APhone: ${phone}`;
+            
+            window.open(`https://wa.me/923027935834?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
+            
+            document.getElementById("contactForm").reset();
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+            modal.hide();
+            
+            alert("Your message has been sent via WhatsApp. We'll respond soon!");
+        }
+
+        // Initialize tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
+</body>
+
+</html>
